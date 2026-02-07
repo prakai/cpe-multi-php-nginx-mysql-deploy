@@ -48,7 +48,7 @@ jobs:
           
           # Use --server to force the correct API address if kubeconfig is stubborn
           kubectl apply -f k8s/deployment.yaml \
-            --namespace={{NAMESPACE}} \
+            --namespace=abc \
             --server=https://k8s-api.cpe.rmuti.ac.th:6443 \
             --insecure-skip-tls-verify=true \
             --validate=false
