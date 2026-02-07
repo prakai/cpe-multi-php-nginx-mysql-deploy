@@ -38,8 +38,6 @@ jobs:
         with:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
-          # Explicitly point to your master node's API
-          k8s-url: https://k8s-api.cpe.rmuti.ac.th:6443 
 
       - name: Deploy to K8s
         run: |
@@ -49,6 +47,5 @@ jobs:
           # Use --server to force the correct API address if kubeconfig is stubborn
           kubectl apply -f k8s/deployment.yaml \
             --namespace=abc \
-            --server=https://k8s-api.cpe.rmuti.ac.th:6443 \
             --insecure-skip-tls-verify=true \
             --validate=false
