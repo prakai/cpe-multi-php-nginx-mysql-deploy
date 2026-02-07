@@ -1,0 +1,26 @@
+FROM php:8.2-fpm-alpine
+
+# Install PDO MySQL
+RUN docker-php-ext-install pdo pdo_mysql
+
+# Install Nginx
+RUN apk add --no-cache nginx
+
+# Copy Nginx config
+COPY nginx/default.conf /etc/nginx/http.d/default.conf
+
+# Create directory structure matching URL path
+RUN mkdir -p /var/www/html/{{NAMESPACE}}
+
+# Copy application code
+WORKDIR /var/www/html/{{NAMESPACE}}
+COPY . .
+
+# Ensure permissions
+RUN chown -R www-data:www-data /var/www/html
+
+# Script to start both Nginx and PHP-FPM
+echo "#!/bin/sh\nphp-fpm -D\nnginx -g 'daemon off;'" > /start.sh
+RUN chmod +x /start.sh
+
+CMD ["/start.sh"]
