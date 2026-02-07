@@ -43,7 +43,7 @@ jobs:
         run: |
           # Replace placeholder with the actual built image
           sed -i "s|ghcr.io/placeholder:latest|${{ env.IMAGE_NAME }}:latest|g" k8s/deployment.yaml
-          
+
           # Use --server to force the correct API address if kubeconfig is stubborn
           kubectl apply -f k8s/deployment.yaml \
             --namespace=abc \
