@@ -10,10 +10,10 @@ RUN apk add --no-cache nginx
 COPY nginx/default.conf /etc/nginx/http.d/default.conf
 
 # Create directory structure matching URL path
-RUN mkdir -p /var/www/html/{{PROJECT}}
+RUN mkdir -p /var/www/html/abc
 
 # Copy application code
-WORKDIR /var/www/html/{{PROJECT}}
+WORKDIR /var/www/html/abc
 COPY . .
 
 # Ensure permissions
