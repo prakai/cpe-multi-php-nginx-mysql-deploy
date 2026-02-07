@@ -53,5 +53,4 @@ jobs:
           # This forces the pods to restart even if the tag name is the same
           kubectl rollout restart deployment/php-app \
             --namespace=abc \
-            --insecure-skip-tls-verify=true \
-            --validate=false
+            --insecure-skip-tls-verify=true
