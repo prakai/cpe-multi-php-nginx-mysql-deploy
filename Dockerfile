@@ -20,7 +20,9 @@ COPY . .
 RUN chown -R www-data:www-data /var/www/html
 
 # Script to start both Nginx and PHP-FPM
-echo "#!/bin/sh\nphp-fpm -D\nnginx -g 'daemon off;'" > /start.sh
-RUN chmod +x /start.sh
+RUN echo "#!/bin/sh" > /start.sh && \
+    echo "php-fpm -D" >> /start.sh && \
+    echo "nginx -g 'daemon off;'" >> /start.sh && \
+    chmod +x /start.sh
 
 CMD ["/start.sh"]
