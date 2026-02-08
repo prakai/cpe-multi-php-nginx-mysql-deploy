@@ -102,8 +102,8 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
-  rules:
   ingressClassName: traefik
+  rules:
   - host: project.cpe.rmuti.ac.th
     http:
       paths:
